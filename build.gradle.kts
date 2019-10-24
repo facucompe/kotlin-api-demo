@@ -23,6 +23,8 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("com.h2database:h2")
+	compile("org.postgresql:postgresql:42.2.5")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
 tasks.withType<KotlinCompile> {
