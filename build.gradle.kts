@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "2.1.8.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
+	id("io.gitlab.arturbosch.detekt") version "1.0.0.RC6-4"
 	kotlin("jvm") version "1.2.71"
 	kotlin("plugin.spring") version "1.2.71"
 }
@@ -32,5 +33,14 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
+	}
+}
+
+detekt {
+	version = "1.0.0.RC6-4"
+	defaultProfile {
+		input = "$projectDir/src"
+		config = "$projectDir/default-detekt-config.yml" // Code style rules file.
+		filters = ".*/res/.*,.*build/.*"
 	}
 }
