@@ -1,13 +1,14 @@
 package com.example.demo.controllers
 
-import com.example.demo.enumerators.Genre
+import com.example.demo.DTO.BookInput
 import com.example.demo.models.Book
 import com.example.demo.repositories.BookRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
+import javax.validation.constraints.NotNull
+import org.modelmapper.ModelMapper
+
 
 @RestController
 @RequestMapping("/books")
@@ -20,12 +21,22 @@ class BookController {
     fun show(
             @PathVariable("id") id : Int
     ): Book {
-        bookRepository.save(Book("asdf", 123, Genre.DRAMA))
         return bookRepository.findById(id).get()
     }
 
     @GetMapping
     fun index(): MutableList<Book> {
         return bookRepository.findAll()
+    }
+
+    @PostMapping
+    fun create(@Valid
+               @NotNull
+               @RequestBody
+               bookInput: BookInput) : Book? {
+
+        val book = ModelMapper().map(bookInput, Book::class.java)
+        bookRepository.save(book)
+        return book
     }
 }

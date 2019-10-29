@@ -25,6 +25,7 @@ dependencies {
 	compile("com.h2database:h2")
 	compile("org.postgresql:postgresql:42.2.5")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	compile("org.modelmapper.extensions:modelmapper-spring:2.3.0")
 }
 
 tasks.withType<KotlinCompile> {
