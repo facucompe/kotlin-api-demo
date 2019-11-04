@@ -22,10 +22,12 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.boot:spring-boot-starter-web")
-	compile("com.h2database:h2")
 	compile("org.postgresql:postgresql:42.2.5")
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.modelmapper.extensions:modelmapper-spring:2.3.0")
+	implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+	implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+	implementation("com.graphql-java:graphql-java-tools:5.2.4")
+//	compile("com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5")
 }
 
 tasks.withType<KotlinCompile> {
