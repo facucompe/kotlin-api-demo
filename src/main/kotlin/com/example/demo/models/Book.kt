@@ -18,7 +18,7 @@ class Book (
 
         @ManyToOne
         @JoinColumn(name = "author_id")
-        var author : Author?,
+        var author : Author? = null,
 
         @Id
         @NotNull

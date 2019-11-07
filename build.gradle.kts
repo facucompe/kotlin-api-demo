@@ -27,7 +27,7 @@ dependencies {
 	implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
 	implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
 	implementation("com.graphql-java:graphql-java-tools:5.2.4")
-//	compile("com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5")
+	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5")
 }
 
 tasks.withType<KotlinCompile> {

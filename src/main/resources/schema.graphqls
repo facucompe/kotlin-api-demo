@@ -6,9 +6,9 @@ type Query {
   bookById(id: ID): Book
 }
 
-#type Mutation {
-#  createBook(name: String!, pageCount: Int!, genre: Genre!): Book
-#}
+type Mutation {
+  createBook(name: String!, pageCount: Int!, genre: Genre!): Book
+}
 
 enum Genre {
   DRAMA
