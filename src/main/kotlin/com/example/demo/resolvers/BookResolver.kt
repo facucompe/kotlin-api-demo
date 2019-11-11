@@ -3,6 +3,7 @@ package com.example.demo.resolvers
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
 import com.example.demo.enumerators.Genre
+import com.example.demo.exceptions.ResourceNotFound
 import com.example.demo.models.Book
 import com.example.demo.repositories.BookRepository
 import graphql.schema.DataFetchingEnvironment
@@ -16,7 +17,7 @@ class BookResolver : GraphQLQueryResolver, GraphQLMutationResolver {
     lateinit var bookRepository: BookRepository
 
     fun bookById(id: Int): Book? {
-        return bookRepository.findById(id).get()
+        return bookRepository.findById(id).orElseThrow { ResourceNotFound("Book not found", id) }
     }
 
     // TODO: Input types are not working. However information can be parsed from dataFetchingEnvironment
