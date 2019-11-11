@@ -2,11 +2,10 @@ package com.example.demo.resolvers
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
-import com.example.demo.enumerators.Genre
+import com.example.demo.DTO.BookInput
 import com.example.demo.exceptions.ResourceNotFound
 import com.example.demo.models.Book
 import com.example.demo.repositories.BookRepository
-import graphql.schema.DataFetchingEnvironment
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -20,9 +19,8 @@ class BookResolver : GraphQLQueryResolver, GraphQLMutationResolver {
         return bookRepository.findById(id).orElseThrow { ResourceNotFound("Book not found", id) }
     }
 
-    // TODO: Input types are not working. However information can be parsed from dataFetchingEnvironment
-    fun createBook(name: String?, pageCount: Int?, genre: Genre?, dataFetchingEnvironment: DataFetchingEnvironment?): Book {
-        val book = Book(name, pageCount, genre)
+    fun createBook(input: BookInput): Book {
+        val book = Book(input.name, input.pageCount, input.genre)
         return bookRepository.save(book)
     }
 }

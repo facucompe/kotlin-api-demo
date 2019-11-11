@@ -7,7 +7,13 @@ type Query {
 }
 
 type Mutation {
-  createBook(name: String!, pageCount: Int!, genre: Genre!): Book
+  createBook(input: BookInput!): Book
+}
+
+input BookInput {
+  name: String
+  pageCount: Int
+  genre: Genre
 }
 
 enum Genre {

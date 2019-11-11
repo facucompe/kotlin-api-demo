@@ -1,5 +1,5 @@
 mutation CreateBook($name: String!, $pageCount: Int!, $genre: Genre!) {
-    createBook(name: $name, pageCount: $pageCount, genre: $genre) {
+    createBook(input: {name: $name, pageCount: $pageCount, genre: $genre}) {
         id
         name
         pageCount
