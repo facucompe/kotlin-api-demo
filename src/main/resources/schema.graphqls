@@ -1,0 +1,38 @@
+schema {
+    query: Query,
+}
+
+type Query {
+  bookById(id: ID): Book
+}
+
+type Mutation {
+  createBook(input: BookInput!): Book
+}
+
+input BookInput {
+  name: String
+  pageCount: Int
+  genre: Genre
+}
+
+enum Genre {
+  DRAMA
+  THRILLER
+  HORROR
+}
+
+type Book {
+  id: ID
+  name: String
+  pageCount: Int
+  genre: Genre
+  author: Author
+}
+
+type Author {
+  id: ID
+  firstName: String
+  lastName: String
+}
+

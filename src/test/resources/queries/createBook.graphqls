@@ -1,0 +1,7 @@
+mutation CreateBook($name: String!, $pageCount: Int!, $genre: Genre!) {
+    createBook(input: {name: $name, pageCount: $pageCount, genre: $genre}) {
+        id
+        name
+        pageCount
+    }
+}
