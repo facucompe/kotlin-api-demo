@@ -66,6 +66,21 @@ class BookResolverTest {
     }
 
     @Test
+    fun bookById_NOT_FOUND() {
+        val rootNode: ObjectNode = objectMapper.createObjectNode()
+        rootNode.put("id", 99)
+
+        val findResponse: GraphQLResponse = graphQLTestTemplate
+                .perform("queries/bookById.graphqls", rootNode)
+        val bookById: BookById = objectMapper.readValue(findResponse.rawResponse.body, BookById::class.java)
+
+        Assert.assertNotNull(findResponse)
+        TestCase.assertTrue(findResponse.isOk)
+        assertNull(bookById.data?.bookById)
+        assert(bookById?.errors?.first()?.message.equals("Exception while fetching data (/bookById) : Book not found"))
+    }
+
+    @Test
     fun createBookTest() {
         val rootNode: ObjectNode = objectMapper.createObjectNode()
         rootNode.put("name", "Brave new world")
