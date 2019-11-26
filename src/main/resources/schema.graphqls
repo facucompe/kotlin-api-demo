@@ -1,5 +1,7 @@
 schema {
-    query: Query,
+  query: Query
+  subscription: Subscription
+  mutation: Mutation
 }
 
 type Query {
@@ -9,6 +11,10 @@ type Query {
 
 type Mutation {
   createBook(input: BookInput!): Book
+}
+
+type Subscription {
+  bookCreationSubscription: Book
 }
 
 input BookInput {

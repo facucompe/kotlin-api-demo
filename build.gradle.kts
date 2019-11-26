@@ -24,8 +24,11 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.postgresql:postgresql:42.2.5")
 	compile("org.modelmapper.extensions:modelmapper-spring:2.3.0")
+	compile("io.reactivex.rxjava2:rxjava:2.1.5")
+	compile("org.springframework.boot:spring-boot-starter-websocket")
 	implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
 	implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+//	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-webflux:5.0.2")
 	implementation("com.graphql-java:graphql-java-tools:5.2.4")
 	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5")
 }
