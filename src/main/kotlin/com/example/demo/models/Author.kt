@@ -1,5 +1,6 @@
 package com.example.demo.models
 
+import com.example.demo.services.AuthorService
 import org.jetbrains.annotations.NotNull
 import javax.persistence.*
 
@@ -17,11 +18,18 @@ class Author(
     @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "author")
     var books : List<Book>?,
 
+    @Column(name = "external_id")
+    var externalId : Int?,
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     var id : Int? = null
 ) {
-    constructor() : this(null, null, null, null)
+    constructor() : this(null, null, null, null, null)
+
+    fun spotlight(): String {
+        return AuthorService().getAuthor(externalId!!).spotlight
+    }
 }

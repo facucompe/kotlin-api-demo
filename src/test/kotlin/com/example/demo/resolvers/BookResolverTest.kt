@@ -66,7 +66,7 @@ class BookResolverTest {
     }
 
     @Test
-    fun bookById_NOT_FOUND() {
+    fun bookByIdNotFound() {
         val rootNode: ObjectNode = objectMapper.createObjectNode()
         rootNode.put("id", 99)
 

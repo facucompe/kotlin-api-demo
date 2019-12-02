@@ -25,9 +25,12 @@ dependencies {
 	compile("org.postgresql:postgresql:42.2.5")
 	compile("org.modelmapper.extensions:modelmapper-spring:2.3.0")
 	implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
-	implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
 	implementation("com.graphql-java:graphql-java-tools:5.2.4")
 	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5")
+
+	compile("com.google.code.gson:gson:2.8.5")
+	compile("com.squareup.retrofit2:retrofit:2.4.0")
+	compile("com.squareup.retrofit2:converter-gson:2.4.0")
 }
 
 tasks.withType<KotlinCompile> {

@@ -62,7 +62,7 @@ class AuthorResolverTest {
     }
 
     @Test
-    fun authorById_NOT_FOUND() {
+    fun authorByIdNotFound() {
         val rootNode: ObjectNode = objectMapper.createObjectNode()
         rootNode.put("id", 99)
 
