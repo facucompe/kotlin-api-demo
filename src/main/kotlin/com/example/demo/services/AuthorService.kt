@@ -2,9 +2,9 @@ package com.example.demo.services
 
 import com.example.demo.DTO.AuthorApiRespose
 import com.example.demo.exceptions.ExternalServiceError
-import retrofit.GsonConverterFactory
-import retrofit.Response
-import retrofit.Retrofit
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class AuthorService {
 
@@ -21,7 +21,7 @@ class AuthorService {
         try {
             val authorCall: Response<AuthorApiRespose> = retrofitService.getAuthor(id).execute()
 
-            if(authorCall.isSuccess) return authorCall.body()
+            if(authorCall.isSuccessful) return authorCall.body()!!
             else throw ExternalServiceError("Author API error")
         } catch (e : Exception) {
             throw ExternalServiceError("Author API error")

@@ -36,7 +36,7 @@ class AuthorResolverTest {
     fun setUp() {
         objectMapper = ObjectMapper()
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        author = Author("George", "Orwell", null)
+        author = Author("George", "Orwell", null, 1)
         authorRepository.save(author)
     }
 
