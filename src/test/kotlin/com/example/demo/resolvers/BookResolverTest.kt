@@ -38,10 +38,12 @@ class BookResolverTest {
 
     @Before
     fun setUp() {
-        objectMapper = ObjectMapper()
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        book = Book("1984", 250, Genre.DRAMA)
-        bookRepository.save(book)
+        objectMapper = ObjectMapper().apply {
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        }
+        book = Book("1984", 250, Genre.DRAMA).let {
+            bookRepository.save(it)
+        }
     }
 
     @After
@@ -51,8 +53,9 @@ class BookResolverTest {
 
     @Test
     fun bookByIdTest() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode()
-        rootNode.put("id", book.id)
+        val rootNode: ObjectNode = objectMapper.createObjectNode().apply {
+            put("id", book.id)
+        }
 
         val findResponse: GraphQLResponse = graphQLTestTemplate
                 .perform("queries/bookById.graphqls", rootNode)
@@ -82,10 +85,11 @@ class BookResolverTest {
 
     @Test
     fun createBookTest() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode()
-        rootNode.put("name", "Brave new world")
-        rootNode.put("genre", Genre.DRAMA.name)
-        rootNode.put("pageCount", 123)
+        val rootNode: ObjectNode = objectMapper.createObjectNode().apply {
+            put("name", "Brave new world")
+            put("genre", Genre.DRAMA.name)
+            put("pageCount", 123)
+        }
 
         val findResponse: GraphQLResponse = graphQLTestTemplate
                 .perform("queries/createBook.graphqls", rootNode)
