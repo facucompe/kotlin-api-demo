@@ -53,13 +53,13 @@ class BookResolverTest {
 
     @Test
     fun bookByIdTest() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode().apply {
+        val rootNode = objectMapper.createObjectNode().apply {
             put("id", book.id)
         }
 
-        val findResponse: GraphQLResponse = graphQLTestTemplate
+        val findResponse = graphQLTestTemplate
                 .perform("queries/bookById.graphqls", rootNode)
-        val bookById: BookById = objectMapper.readValue(findResponse.rawResponse.body, BookById::class.java)
+        val bookById = objectMapper.readValue(findResponse.rawResponse.body, BookById::class.java)
 
         Assert.assertNotNull(findResponse)
         TestCase.assertTrue(findResponse.isOk)
@@ -70,12 +70,13 @@ class BookResolverTest {
 
     @Test
     fun bookByIdNotFound() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode()
-        rootNode.put("id", 99)
+        val rootNode = objectMapper.createObjectNode().apply {
+            put("id", 99)
+        }
 
-        val findResponse: GraphQLResponse = graphQLTestTemplate
+        val findResponse = graphQLTestTemplate
                 .perform("queries/bookById.graphqls", rootNode)
-        val bookById: BookById = objectMapper.readValue(findResponse.rawResponse.body, BookById::class.java)
+        val bookById = objectMapper.readValue(findResponse.rawResponse.body, BookById::class.java)
 
         Assert.assertNotNull(findResponse)
         TestCase.assertTrue(findResponse.isOk)
@@ -85,15 +86,15 @@ class BookResolverTest {
 
     @Test
     fun createBookTest() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode().apply {
+        val rootNode = objectMapper.createObjectNode().apply {
             put("name", "Brave new world")
             put("genre", Genre.DRAMA.name)
             put("pageCount", 123)
         }
 
-        val findResponse: GraphQLResponse = graphQLTestTemplate
+        val findResponse = graphQLTestTemplate
                 .perform("queries/createBook.graphqls", rootNode)
-        val createBook: CreateBook = objectMapper.readValue(findResponse.rawResponse.body, CreateBook::class.java)
+        val createBook = objectMapper.readValue(findResponse.rawResponse.body, CreateBook::class.java)
 
         Assert.assertNotNull(findResponse)
         TestCase.assertTrue(findResponse.isOk)

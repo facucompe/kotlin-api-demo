@@ -34,8 +34,9 @@ class AuthorResolverTest {
 
     @Before
     fun setUp() {
-        objectMapper = ObjectMapper()
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        objectMapper = ObjectMapper().apply {
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        }
         author = Author("George", "Orwell", null, 1)
         authorRepository.save(author)
     }
@@ -47,10 +48,11 @@ class AuthorResolverTest {
 
     @Test
     fun authorById() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode()
-        rootNode.put("id", author.id)
+        val rootNode = objectMapper.createObjectNode().apply {
+            put("id", author.id)
+        }
 
-        val findResponse: GraphQLResponse = graphQLTestTemplate
+        val findResponse = graphQLTestTemplate
                 .perform("queries/authorById.graphqls", rootNode)
         val authorById: AuthorById = objectMapper.readValue(findResponse.rawResponse.body, AuthorById::class.java)
 
@@ -63,12 +65,13 @@ class AuthorResolverTest {
 
     @Test
     fun authorByIdNotFound() {
-        val rootNode: ObjectNode = objectMapper.createObjectNode()
-        rootNode.put("id", 99)
+        val rootNode = objectMapper.createObjectNode().apply {
+            put("id", 99)
+        }
 
-        val findResponse: GraphQLResponse = graphQLTestTemplate
+        val findResponse = graphQLTestTemplate
                 .perform("queries/authorById.graphqls", rootNode)
-        val authorById: AuthorById = objectMapper.readValue(findResponse.rawResponse.body, AuthorById::class.java)
+        val authorById = objectMapper.readValue(findResponse.rawResponse.body, AuthorById::class.java)
 
         graphql.Assert.assertNotNull(findResponse)
         TestCase.assertTrue(findResponse.isOk)

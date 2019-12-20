@@ -16,10 +16,10 @@ class AuthorService {
     }
 
     fun getAuthor(id: Int) : AuthorApiRespose {
-        val retrofitService: AuthorRetrofitService = retrofit().create(AuthorRetrofitService::class.java)
+        val retrofitService = retrofit().create(AuthorRetrofitService::class.java)
 
         try {
-            val authorCall: Response<AuthorApiRespose> = retrofitService.getAuthor(id).execute()
+            val authorCall = retrofitService.getAuthor(id).execute()
 
             if(authorCall.isSuccessful) return authorCall.body()!!
             else throw ExternalServiceError("Author API error")
