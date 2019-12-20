@@ -5,8 +5,6 @@ import com.example.demo.repositories.AuthorRepository
 import com.example.demo.responses.authorById.AuthorById
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.node.ObjectNode
-import com.graphql.spring.boot.test.GraphQLResponse
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import junit.framework.Assert.assertNull
 import junit.framework.TestCase
