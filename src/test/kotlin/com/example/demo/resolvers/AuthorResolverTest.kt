@@ -36,7 +36,7 @@ class AuthorResolverTest {
     fun setUp() {
         objectMapper = ObjectMapper()
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        author = Author("George", "Orwell", null)
+        author = Author("George", "Orwell", null, 1)
         authorRepository.save(author)
     }
 
@@ -62,7 +62,7 @@ class AuthorResolverTest {
     }
 
     @Test
-    fun authorById_NOT_FOUND() {
+    fun authorByIdNotFound() {
         val rootNode: ObjectNode = objectMapper.createObjectNode()
         rootNode.put("id", 99)
 
