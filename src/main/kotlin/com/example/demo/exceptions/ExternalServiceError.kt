@@ -5,9 +5,9 @@ import graphql.language.SourceLocation
 
 class ExternalServiceError(val errorMessage: String) : BaseException() {
 
-    override fun errorMessage(): String = errorMessage
+    override fun errorMessage() = errorMessage
 
-    override fun getErrorType(): ErrorType = ErrorType.DataFetchingException
+    override fun getErrorType() = ErrorType.DataFetchingException
 
-    override fun getLocations(): MutableList<SourceLocation>? = null
+    override fun getLocations() = null
 }
