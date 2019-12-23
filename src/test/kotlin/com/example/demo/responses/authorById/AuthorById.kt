@@ -1,5 +1,3 @@
 package com.example.demo.responses.authorById
 
-class AuthorById(var data : AuthorByIdData?, var errors : List<Error>?) {
-    constructor() : this(null, null)
-}
+data class AuthorById(var data : AuthorByIdData? = null , var errors : List<Error>? = null)
